@@ -5,11 +5,10 @@ class SessionsController < ApplicationController
   def create
     # byebug
 
-    if params[:username] == "" 
-
-      redirect_to login_path
+    if params[:name] == "" || params[:name] == nil
+      redirect_to sessions_new_path
     else
-      session[:username] = params[:username]
+      session[:name] = params[:name]
       
       redirect_to '/'
     end
@@ -17,10 +16,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete :username
+    session.delete :name
   end
-    def user_params
-      params.require(:name).permit(:username)
-    end
+   
 
 end
